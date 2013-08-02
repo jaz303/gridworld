@@ -1,8 +1,20 @@
+function _n(val, def) {
+  return (typeof val === 'number') ? val : def;
+}
+
+var floor = Math.floor;
+
 function Node(x, y, backgroundColor) {
   this.x = x;
   this.y = y;
   this.backgroundColor = backgroundColor || null;
   this.blocked = false;
+}
+
+Node.prototype = {
+  toString: function() {
+    return "<node x=" + this.x + " y=" + this.y + " blocked=" + this.blocked + ">";
+  }
 }
 
 function GridWorld(canvas, width, height, options) {
@@ -11,17 +23,47 @@ function GridWorld(canvas, width, height, options) {
 
   this.canvas  = canvas;
   this.ctx     = canvas.getContext('2d');
-  this.width   = Math.floor(width);
-  this.height  = Math.floor(height);
+  this.width   = floor(width);
+  this.height  = floor(height);
 
-  this.sx = options.startX || 0;
-  this.sy = options.startY || 0;
+  var padding = options.padding;
+  
+  if (typeof padding === 'undefined') {
+    padding = 0;
+  }
+  
+  if (typeof padding === 'number') {
+    this.padding = {
+      top     : padding,
+      right   : padding,
+      bottom  : padding,
+      left    : padding
+    };
+  } else {
+    this.padding = padding;
+  }
 
-  this.cellSize = options.cellSize || 32;
-  this.cellSpacing = options.cellSpacing || 1;
+  this.cellSize = _n(options.cellSize, 32);
+  this.cellSpacing = _n(options.cellSpacing, 1);
   this.drawBorder = !!options.drawBorder;
   this.borderColor = options.borderColor || 'black';
   this.backgroundColor = options.backgroundColor || 'white';
+
+  if (options.resizeCanvas) {
+    var cw = this.padding.left + this.padding.right,
+        ch = this.padding.top + this.padding.bottom;
+
+    cw += (this.width * (this.cellSize + this.cellSpacing)) - this.cellSpacing;
+    ch += (this.height * (this.cellSize + this.cellSpacing)) - this.cellSpacing;
+
+    if (this.drawBorder) {
+      cw += (this.cellSpacing * 2);
+      ch += (this.cellSpacing * 2);
+    }
+
+    this.canvas.width = cw;
+    this.canvas.height = ch;
+  }
 
   this.nodes = [];
   for (var j = 0; j < this.height; ++j) {
@@ -39,7 +81,23 @@ function GridWorld(canvas, width, height, options) {
   this.onclick = options.onclick;
 
   function p2n(x, y) {
-    console.log(x, y);
+    
+    x -= self.padding.left;
+    y -= self.padding.top;
+    
+    if (self.drawBorder) {
+      x -= (self.cellSpacing * 2);
+      y -= (self.cellSpacing * 2);
+    }
+
+    x = floor(x / (self.cellSize + self.cellSpacing));
+    y = floor(y / (self.cellSize + self.cellSpacing));
+
+    if (x >= 0 && x < self.width && y >= 0 && y < self.height) {
+      return self.nodes[(y * self.width) + x];
+    } else {
+      return null;
+    }
   }
 
   canvas.addEventListener('click', function(evt) {
@@ -49,6 +107,8 @@ function GridWorld(canvas, width, height, options) {
     
     var node = p2n(evt.offsetX, evt.offsetY);
     
+    console.log
+
     if (node)
       self.onclick(node);
   
@@ -70,14 +130,14 @@ GridWorld.prototype = {
         cadj  = this.drawBorder ? this.cellSpacing : 0;
 
     ctx.fillStyle = this.borderColor;
-    ctx.fillRect(this.sx,
-                 this.sy,
+    ctx.fillRect(this.padding.left,
+                 this.padding.top,
                  ((csz + csp) * this.width) + badj,
                  ((csz + csp) * this.height) + badj);
 
-    var cy = this.sy + cadj;
+    var cy = this.padding.top + cadj;
     for (var j = 0; j < this.height; ++j) {
-      var cx = this.sx + cadj;
+      var cx = this.padding.left + cadj;
       for (var i = 0; i < this.width; ++i) {
         var n = this.nodes[ix++];
         ctx.fillStyle = n.backgroundColor || this.backgroundColor;
