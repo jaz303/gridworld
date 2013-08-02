@@ -20,29 +20,58 @@ Browserify is recommended.
 
 #### new GridWorld(canvasEl, width, height, [options])
 
+Create a new `GridWorld` with a given `width` and `height` (specified in grid cells) that will draw onto `canvas`.
+
+Supported options:
+
+  * `cellSize` size of each cell in pixels. Default: 32.
+  * `cellPadding` size between each cell in pixels. Default: 1.
+  * `drawBorder` if set, a border will be drawn around the entire world, instead of just between each cell.
+  * `borderColor` default: `'black'`.
+  * `backgroundColor` default cell background color. Default: `'white'`.
+  * `resizeCanvas` if set, canvas will be resized to fit world's dimensions, including any specified padding.
+  * `padding` how much space to leave around the rendered world. Can be specified as a single number or as an object with keys `top`, `right`, `bottom` and `left`. Mostly useful with `resizeCanvas` option. Default: 0.
+  * `onclick` click handler for cells. See event handling, below.
+
 ### Drawing the world
 
 #### world.draw()
+
+Draws the world on its canvas.
 
 ### Setting world attributes
 
 #### world.setBackgroundColor(x, y, color)
 
+Set the background color of the node at (`x`,`y`) to `color`.
+
 #### world.setBlocked(x, y, blocked)
 
+Flag the cell at (`x`, `y`) as passable/impassable. A cell's passability does not affect how it is drawn.
+
 #### world.setAttribute(x, y, attr, value)
+
+Set arbitrary attribute `attr` on node (`x`,`y`) to `value`.
 
 ### Iterating
 
 #### world.eachNeighbour(x, y, callback)
 
-#### world.eachNeighbourNode(x, y, callback)
+Iterate over each Manhattan neighbour of node (`x`,`y`). Callback receives (`x`,`y`) co-ordinate of neighbour as a parameter.
+
+#### world.eachNeighbourNode(node, callback)
+
+Iterate over each Manhattan neighbour of `node`. Callback receives neighbour node object as a parameter.
 
 #### world.eachNode(callback)
+
+Iterate over each of the world's `node` objects. Callback receives node object as a parameter.
 
 ### Event Handling
 
 #### world.onclick = function(node) { /* ... */ }
+
+Function to invoke when user clicks on a node. Receives clicked node as a paremeter.
 
 ## TODO
 
