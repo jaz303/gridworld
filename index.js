@@ -164,32 +164,23 @@ GridWorld.prototype = {
   },
 
   eachNeighbour: function(x, y, callback) {
-    
-    var w   = this.width,
-        h   = this.height,
-        ns  = this.nodes,
-        ix  = (y * w) + x;
-
-    if (x > 0   && !ns[ix-1].blocked) callback(x-1, y);
-    if (x < w-1 && !ns[ix+1].blocked) callback(x+1, y);
-    if (y > 0   && !ns[ix-w].blocked) callback(x, y-1);
-    if (y < h-1 && !ns[ix+w].blocked) callback(x, y+1);
-
+    return this.eachNodeNeighbour(this.nodes[(y * this.width) + x], callback);
   },
 
-  eachNeighbourNode: function(node, callback) {
+  eachNodeNeighbour: function(node, callback) {
 
     var x   = node.x,
         y   = node.y,
         w   = this.width,
         h   = this.height,
         ns  = this.nodes,
-        ix  = (y * w) + h;
+        ix  = (y * w) + h,
+        nix = 0;
 
-    if (x > 0   && !ns[ix-1].blocked) callback(ns[ix-1]);
-    if (x < w-1 && !ns[ix+1].blocked) callback(ns[ix+1]);
-    if (y > 0   && !ns[ix-w].blocked) callback(ns[ix-w]);
-    if (y < h-1 && !ns[ix+w].blocked) callback(ns[ix+w]);
+    if (x > 0   && !ns[ix-1].blocked) callback(ns[ix-1], nix++);
+    if (x < w-1 && !ns[ix+1].blocked) callback(ns[ix+1], nix++);
+    if (y > 0   && !ns[ix-w].blocked) callback(ns[ix-w], nix++);
+    if (y < h-1 && !ns[ix+w].blocked) callback(ns[ix+w], nix++);
   
   },
 
