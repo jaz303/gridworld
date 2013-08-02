@@ -174,7 +174,7 @@ GridWorld.prototype = {
         w   = this.width,
         h   = this.height,
         ns  = this.nodes,
-        ix  = (y * w) + h,
+        ix  = (y * w) + x,
         nix = 0;
 
     if (x > 0   && !ns[ix-1].blocked) callback(ns[ix-1], nix++);
