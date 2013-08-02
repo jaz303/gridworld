@@ -16,11 +16,9 @@ Browserify is recommended.
 
 ### Creating a world
 
-    var GridWorld = require('gridworld').GridWorld;
-
 #### new GridWorld(canvasEl, width, height, [options])
 
-Create a new `GridWorld` with a given `width` and `height` (specified in grid cells) that will draw onto `canvas`.
+Create a new `GridWorld` with a given `width` and `height` (specified in terms of grid cells) that will draw onto `canvas`.
 
 Supported options:
 
@@ -29,9 +27,22 @@ Supported options:
   * `drawBorder` if set, a border will be drawn around the entire world, instead of just between each cell.
   * `borderColor` default: `'black'`.
   * `backgroundColor` default cell background color. Default: `'white'`.
-  * `resizeCanvas` if set, canvas will be resized to fit world's dimensions, including any specified padding.
+  * `resizeCanvas` if set, canvas element will be resized to fit world's dimensions, including any specified padding.
   * `padding` how much space to leave around the rendered world. Can be specified as a single number or as an object with keys `top`, `right`, `bottom` and `left`. Mostly useful with `resizeCanvas` option. Default: 0.
   * `onclick` click handler for cells. See event handling, below.
+
+    var GridWorld = require('gridworld').GridWorld;
+
+    var world = new GridWorld(canvas, map[0].length, map.length, {
+      padding       : {top: 10, left: 10, right: 10, bottom: 60},
+      cellSize      : 32,
+      cellSpacing   : 1,
+      resizeCanvas  : true,
+      drawBorder    : true,
+      onclick: function(node) {
+        console.log("you clicked on node: " + node);
+      }
+    });
 
 ### Drawing the world
 
