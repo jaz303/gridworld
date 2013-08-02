@@ -201,4 +201,4 @@ GridWorld.prototype = {
 
 };
 
-module.exports.GridWorld = GridWorld;
+module.exports = GridWorld;
