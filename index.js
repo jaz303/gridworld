@@ -1,5 +1,5 @@
 function Node(x, y, backgroundColor) {
-	this.x = x;
+  this.x = x;
   this.y = y;
   this.backgroundColor = backgroundColor || null;
   this.blocked = false;
@@ -9,10 +9,10 @@ function GridWorld(canvas, width, height, options) {
 
   options = options || {};
 
-	this.canvas  = canvas;
+  this.canvas  = canvas;
   this.ctx     = canvas.getContext('2d');
-	this.width   = Math.floor(width);
-	this.height  = Math.floor(height);
+  this.width   = Math.floor(width);
+  this.height  = Math.floor(height);
 
   this.sx = options.startX || 0;
   this.sy = options.startY || 0;
@@ -57,7 +57,7 @@ function GridWorld(canvas, width, height, options) {
 }
 
 GridWorld.prototype = {
-	draw: function() {
+  draw: function() {
 
     var csz   = this.cellSize,
         csp   = this.cellSpacing
@@ -87,7 +87,7 @@ GridWorld.prototype = {
       cy += csz + csp;
     }
 
-	},
+  },
 
   setBackgroundColor: function(x, y, color) {
     this.nodes[(y * this.width) + x].backgroundColor = color || null;
