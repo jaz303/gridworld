@@ -107,8 +107,6 @@ function GridWorld(canvas, width, height, options) {
     
     var node = p2n(evt.offsetX, evt.offsetY);
     
-    console.log
-
     if (node)
       self.onclick(node);
   
