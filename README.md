@@ -30,7 +30,8 @@ Supported options:
   * `resizeCanvas` if set, canvas element will be resized to fit world's dimensions, including any specified padding.
   * `padding` how much space to leave around the rendered world. Can be specified as a single number or as an object with keys `top`, `right`, `bottom` and `left`. Mostly useful with `resizeCanvas` option. Default: 0.
   * `onclick` click handler for cells. See event handling, below.
-
+  
+Example:
 
     var GridWorld = require('gridworld').GridWorld;
     var world = new GridWorld(canvas, map[0].length, map.length, {
@@ -43,7 +44,6 @@ Supported options:
         console.log("you clicked on node: " + node);
       }
     });
-
 
 ### Drawing the world
 
@@ -89,3 +89,4 @@ Function to invoke when user clicks on a node. Receives clicked node as a pareme
 
   * Add event handlers for dragging
   * Allow markers to be overlaid on cells
+  * Support optional diagonal neighbours
