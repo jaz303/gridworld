@@ -53,35 +53,35 @@ Draws the world on its canvas.
 
 ### Setting world attributes
 
-#### world.setBackgroundColor(x, y, color)
+#### `world.setBackgroundColor(x, y, color)`
 
 Set the background color of the node at (`x`,`y`) to `color`.
 
-#### world.setBlocked(x, y, blocked)
+#### `world.setBlocked(x, y, blocked)`
 
 Flag the cell at (`x`, `y`) as passable/impassable. A cell's passability does not affect how it is drawn.
 
-#### world.setAttribute(x, y, attr, value)
+#### `world.setAttribute(x, y, attr, value)`
 
 Set arbitrary attribute `attr` on node (`x`,`y`) to `value`.
 
 ### Iterating
 
-#### world.eachNeighbour(x, y, callback)
+#### `world.eachNeighbour(x, y, callback)`
 
 Iterate over each Manhattan neighbour of node (`x`,`y`). Callback receives (`x`,`y`) co-ordinate of neighbour as a parameter.
 
-#### world.eachNeighbourNode(node, callback)
+#### `world.eachNeighbourNode(node, callback)`
 
 Iterate over each Manhattan neighbour of `node`. Callback receives neighbour node object as a parameter.
 
-#### world.eachNode(callback)
+#### `world.eachNode(callback)`
 
 Iterate over each of the world's `node` objects. Callback receives node object as a parameter.
 
 ### Event Handling
 
-#### world.onclick = function(node) { /* ... */ }
+#### `world.onclick = function(node) { /* ... */ }`
 
 Function to invoke when user clicks on a node. Receives clicked node as a paremeter.
 
