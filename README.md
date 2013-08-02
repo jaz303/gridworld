@@ -31,8 +31,8 @@ Supported options:
   * `padding` how much space to leave around the rendered world. Can be specified as a single number or as an object with keys `top`, `right`, `bottom` and `left`. Mostly useful with `resizeCanvas` option. Default: 0.
   * `onclick` click handler for cells. See event handling, below.
 
-    var GridWorld = require('gridworld').GridWorld;
 
+    var GridWorld = require('gridworld').GridWorld;
     var world = new GridWorld(canvas, map[0].length, map.length, {
       padding       : {top: 10, left: 10, right: 10, bottom: 60},
       cellSize      : 32,
@@ -44,9 +44,10 @@ Supported options:
       }
     });
 
+
 ### Drawing the world
 
-#### world.draw()
+#### `world.draw()`
 
 Draws the world on its canvas.
 
