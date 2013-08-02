@@ -129,6 +129,8 @@ GridWorld.prototype = {
     var badj  = this.drawBorder ? this.cellSpacing : -this.cellSpacing,
         cadj  = this.drawBorder ? this.cellSpacing : 0;
 
+    ctx.save();
+
     ctx.fillStyle = this.borderColor;
     ctx.fillRect(this.padding.left,
                  this.padding.top,
@@ -146,6 +148,8 @@ GridWorld.prototype = {
       }
       cy += csz + csp;
     }
+
+    ctx.restore();
 
   },
 
