@@ -69,11 +69,11 @@ Set arbitrary attribute `attr` on node (`x`,`y`) to `value`.
 
 #### `world.eachNeighbour(x, y, callback)`
 
-Iterate over each Manhattan neighbour of node (`x`,`y`). Callback receives neighbour node object and index as a parameter.
+Iterate over each non-blocked Manhattan neighbour of node (`x`,`y`). Callback receives neighbour node object and index as a parameter.
 
 #### `world.eachNodeNeighbour(node, callback)`
 
-Iterate over each Manhattan neighbour of `node`. Callback receives neighbour node object and index as a parameter.
+Iterate over each non-blocked Manhattan neighbour of `node`. Callback receives neighbour node object and index as a parameter.
 
 #### `world.eachNode(callback)`
 
