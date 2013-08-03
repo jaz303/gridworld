@@ -16,7 +16,7 @@ Browserify is recommended.
 
 ### Creating a world
 
-#### new GridWorld(canvasEl, width, height, [options])
+#### `new GridWorld(canvasEl, width, height, [options])`
 
 Create a new `GridWorld` with a given `width` and `height` (specified in terms of grid cells) that will draw onto `canvas`.
 
