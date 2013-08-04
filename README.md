@@ -51,11 +51,25 @@ Example:
 
 Draws the world on its canvas.
 
-### Setting world attributes
+### Accessing nodes directly
+
+#### `world.get(x, y)`
+
+Returns the node object representing cell at (`x`,`y`).
+
+### World attributes
+
+#### `world.getBackgroundColor(x, y)`
+
+Returns the background color of the node at (`x`,`y`).
 
 #### `world.setBackgroundColor(x, y, color)`
 
 Set the background color of the node at (`x`,`y`) to `color`.
+
+#### `world.isBlocked(x, y)`
+
+Returns `true` if the node at (`x`, `y`) is blocked.
 
 #### `world.setBlocked(x, y, blocked)`
 

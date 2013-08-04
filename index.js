@@ -151,8 +151,20 @@ GridWorld.prototype = {
 
   },
 
+  get: function(x, y) {
+    return this.nodes[(y * this.width) + x];
+  },
+
+  getBackgroundColor: function(x, y) {
+    return this.nodes[(y * this.width) + x].backgroundColor;
+  },
+
   setBackgroundColor: function(x, y, color) {
     this.nodes[(y * this.width) + x].backgroundColor = color || null;
+  },
+
+  isBlocked: function(x, y) {
+    return this.nodes[(y * this.width) + x].blocked;
   },
 
   setBlocked: function(x, y, blocked) {
